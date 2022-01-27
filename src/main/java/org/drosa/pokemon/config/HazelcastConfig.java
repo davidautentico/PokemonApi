@@ -15,7 +15,9 @@ import org.springframework.context.annotation.Configuration;
 public class HazelcastConfig {
 
   public static final String HEAVIEST = "heaviest";
+
   public static final String HIGHEST = "highest";
+
   public static final String MORE_EXPERIENCE = "moreExperience";
 
   @Bean

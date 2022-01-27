@@ -1,9 +1,8 @@
 package org.drosa.pokemon.controller;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.drosa.pokemon.domain.Pokemon;
+import org.drosa.pokemon.domain.dto.PokemonListDTO;
 import org.drosa.pokemon.service.PokemonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,15 +25,15 @@ public class PokemonControllerV1 {
       value = V1_PATH + "/heaviest-pokemons/{number-pokemons}",
       produces = {"application/json", "application/problem+json"}
   )
-  public ResponseEntity<List<Pokemon>> getHeaviestPokemons(@PathVariable("number-pokemons") Integer number) {
+  public ResponseEntity<PokemonListDTO> getHeaviestPokemons(@PathVariable("number-pokemons") Integer number) {
 
     log.info("Received GET for the <{}> heaviest pokemons", number);
 
-    List<Pokemon> heaviestPokemons = pokemonService.getHeaviestPokemons(number);
+    PokemonListDTO pokemonListDTO = PokemonListDTO.builder().pokemonList(pokemonService.getHeaviestPokemons(number)).build();
 
-    log.info("Heaviest org.drosa.pokemon list <{}> obtained", heaviestPokemons.size());
+    log.info("Heaviest org.drosa.pokemon list <{}> obtained", pokemonListDTO.getPokemonList().size());
 
-    return new ResponseEntity<>(heaviestPokemons, HttpStatus.OK);
+    return new ResponseEntity<>(pokemonListDTO, HttpStatus.OK);
   }
 
   @RequestMapping(
@@ -42,15 +41,15 @@ public class PokemonControllerV1 {
       value = V1_PATH + "/highest-pokemons/{number-pokemons}",
       produces = {"application/json", "application/problem+json"}
   )
-  public ResponseEntity<List<Pokemon>> getHighestPokemons(@PathVariable("number-pokemons") Integer number) {
+  public ResponseEntity<PokemonListDTO> getHighestPokemons(@PathVariable("number-pokemons") Integer number) {
 
     log.info("Received GET for the <{}> highest pokemons", number);
 
-    List<Pokemon> highestPokemons = pokemonService.getHighestPokemons(number);
+    PokemonListDTO pokemonListDTO = PokemonListDTO.builder().pokemonList(pokemonService.getHighestPokemons(number)).build();
 
-    log.info("Highest org.drosa.pokemon list <{}> obtained", highestPokemons.size());
+    log.info("Highest org.drosa.pokemon list <{}> obtained", pokemonListDTO.getPokemonList().size());
 
-    return new ResponseEntity<>(highestPokemons, HttpStatus.OK);
+    return new ResponseEntity<>(pokemonListDTO, HttpStatus.OK);
   }
 
   @RequestMapping(
@@ -58,13 +57,13 @@ public class PokemonControllerV1 {
       value = V1_PATH + "/experience-pokemons/{number-pokemons}",
       produces = {"application/json", "application/problem+json"}
   )
-  public ResponseEntity<List<Pokemon>> getMoreExperiencePokemons(@PathVariable("number-pokemons") Integer number) {
+  public ResponseEntity<PokemonListDTO> getMoreExperiencePokemons(@PathVariable("number-pokemons") Integer number) {
     log.info("Received GET for the <{}> more experience pokemons", number);
 
-    List<Pokemon> moreExperiencePokemons = pokemonService.getMoreExperiencePokemons(number);
+    PokemonListDTO pokemonListDTO = PokemonListDTO.builder().pokemonList(pokemonService.getMoreExperiencePokemons(number)).build();
 
-    log.info("Highest org.drosa.pokemon list <{}> more experience pokemons", moreExperiencePokemons.size());
+    log.info("Highest org.drosa.pokemon list <{}> more experience pokemons", pokemonListDTO.getPokemonList().size());
 
-    return new ResponseEntity<>(moreExperiencePokemons, HttpStatus.OK);
+    return new ResponseEntity<>(pokemonListDTO, HttpStatus.OK);
   }
 }

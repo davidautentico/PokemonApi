@@ -12,5 +12,6 @@ import lombok.extern.jackson.Jacksonized;
 @AllArgsConstructor
 @Jacksonized
 public class PokemonResponseData {
+
   private PokemonListGraphqlDto data;
 }

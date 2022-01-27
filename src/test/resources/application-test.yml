@@ -13,6 +13,6 @@ management:
   endpoints:
     web:
       exposure:
-        include: [ "info","health" ]
+        include: ["info","health"]
 
 

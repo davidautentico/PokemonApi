@@ -10,11 +10,12 @@ import lombok.Getter;
 @Getter
 @Builder
 public class PokemonV2Dto implements Serializable {
-    private static final long serialVersionUID = 1L;
 
-    private final int id;
+  private static final long serialVersionUID = 1L;
 
-    private final String name;
+  private final int id;
 
-    private final Instant lastUpdatedAt;
-  }
+  private final String name;
+
+  private final Instant lastUpdatedAt;
+}

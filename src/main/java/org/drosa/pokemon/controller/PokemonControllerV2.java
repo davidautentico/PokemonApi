@@ -1,9 +1,8 @@
 package org.drosa.pokemon.controller;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.drosa.pokemon.domain.dto.PokemonV2Dto;
+import org.drosa.pokemon.domain.dto.PokemonV2ListDTO;
 import org.drosa.pokemon.service.PokemonService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,15 +25,16 @@ public class PokemonControllerV2 {
       value = V2_PATH + "/{attribute}/{number-pokemons}",
       produces = {"application/json", "application/problem+json"}
   )
-  public ResponseEntity<List<PokemonV2Dto>> getNumberOrderedPokemonsBasedOnAttribute(@PathVariable("attribute") String attribute,
+  public ResponseEntity<PokemonV2ListDTO> getNumberOrderedPokemonsBasedOnAttribute(@PathVariable("attribute") String attribute,
       @PathVariable("number-pokemons") Integer number) {
 
     log.info("Received GET to return <{}> pokemons based on attribute <{}>", number, attribute);
 
-    List<PokemonV2Dto> pokemonList = pokemonService.getOrderedPokemonsBasedOnAttribute(attribute, number);
+    PokemonV2ListDTO pokemonV2ListDTO =
+        PokemonV2ListDTO.builder().pokemonList(pokemonService.getOrderedPokemonsBasedOnAttribute(attribute, number)).build();
 
-    log.info("Pokemon list obtained <{}>", pokemonList);
+    log.info("Pokemon list obtained <{}>", pokemonV2ListDTO);
 
-    return new ResponseEntity<>(pokemonList, HttpStatus.OK);
+    return new ResponseEntity<>(pokemonV2ListDTO, HttpStatus.OK);
   }
 }
