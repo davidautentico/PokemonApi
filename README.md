@@ -21,7 +21,7 @@ Example of getting 5 heaviest pokemons: http://localhost:8080/v2/pokemons/attrib
 
 # Run standalone
 1. gradlew build
-2. java" -jar build/libs/PokemonApiApp-1.0.jar
+2. java -jar build/libs/PokemonApiApp-1.0.jar
 
 # Run with docker
 1. docker build --build-arg JAR_FILE=build/libs/PokemonApiApp-1.0.jar -t drosa/pokemon-api-docker .
