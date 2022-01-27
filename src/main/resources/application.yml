@@ -1,0 +1,18 @@
+#server
+server:
+  server.port=${PORT:8080}
+
+#Log
+log-folder-location: log/pokemon-data-connect/
+
+#pokeapi
+poke-api-url: https://beta.pokeapi.co/graphql/v1beta
+
+#Management endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ["info","health"]
+
+

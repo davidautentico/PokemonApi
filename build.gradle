@@ -1,0 +1,41 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'application'
+}
+
+group 'org.drosa.pokemon'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-cache:2.6.3'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.3'
+    implementation 'com.hazelcast:hazelcast-spring:4.2.4'
+    implementation 'com.hazelcast:hazelcast:4.2.4'
+    implementation 'org.projectlombok:lombok:1.18.18'
+    testImplementation('io.rest-assured:rest-assured:4.4.0')
+    testImplementation 'io.rest-assured:spring-mock-mvc:4.4.0'
+    testImplementation(group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.2')
+    testImplementation(group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.10.0')
+    testImplementation('org.mockito:mockito-inline:2.13.0')
+    testImplementation group: 'org.springframework', name: 'spring-test', version: '5.3.8'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+application{
+    mainClass = 'org.drosa.pokemon.PokemonDataConnectAdapter'
+}
+
+springBoot {
+    buildInfo()
+}
